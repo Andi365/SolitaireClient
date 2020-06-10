@@ -9,11 +9,26 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import model.Card;
+import model.CardDeck;
+import model.GameStack;
+import model.GameState;
 
 public class Main extends Application implements EventHandler<ActionEvent> {
     Button button;
 
     public static void main(String[] args) {
+        CardDeck deck = CardDeck.getINSTANCE();
+        GameState game = new GameState();
+        GameStack[] gameStacks = game.getGameStacks();
+
+        for (int i = 0; i < 5; i++) {
+            Card c = deck.draw();
+            if (i == 4) c.setHidden(false);
+            gameStacks[1].addCard(c);
+        }
+
+        System.out.println(game.getGameStacks()[1]);
         launch(args);
     }
 
