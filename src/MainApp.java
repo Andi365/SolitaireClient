@@ -158,6 +158,9 @@ public class MainApp extends Application {
         cards.add(new Card("Ruder", 4));
 
         return cards;
+
+        //fixed
+
     }
 
     public Stage getPrimaryStage() {
