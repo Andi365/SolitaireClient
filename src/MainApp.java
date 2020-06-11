@@ -114,7 +114,7 @@ public class MainApp extends Application {
         vBox.setMaxSize(250,700);
 
         //Load the image
-        Image image = new Image("Solitaire_recognition.PNG");
+        Image image = new Image("Solitaire_recognition.png");
         ImageView img = new ImageView();
         img.setImage(image);
 
