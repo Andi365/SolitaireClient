@@ -26,4 +26,8 @@ public class CardDeck implements CardParserI {
     public static CardDeck getINSTANCE() {
         return INSTANCE;
     }
+
+    public ArrayList<Card> getDeck() {
+        return deck;
+    }
 }

@@ -1,5 +1,4 @@
 public class Card {
-
     String type;
     int value;
 

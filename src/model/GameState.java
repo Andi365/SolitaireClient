@@ -1,7 +1,9 @@
 package model;
 
+import java.util.ArrayList;
+
 public class GameState {
-    private CardStack stock = new CardStack();
+    /*private CardStack stock = new CardStack();
     private CardStack turnedStock = new CardStack();
     private GameStack[] gameStacks = new GameStack[7];
     private FinishStack[] finishStacks = new FinishStack[4];
@@ -152,5 +154,5 @@ public class GameState {
 
     public FinishStack[] getFinishStacks() {
         return finishStacks;
-    }
+    }*/
 }
