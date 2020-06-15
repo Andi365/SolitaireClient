@@ -37,7 +37,6 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="25.0" stroke="WHITE" strokeType="INSIDE" width="200.0" />
                               <Button layoutX="69.0" layoutY="2.0" mnemonicParsing="false" onAction="#editButton" text="Edit card">
                                  <opaqueInsets>
                                     <Insets />
@@ -55,7 +54,7 @@
             </AnchorPane>
             <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <ImageView fitHeight="500.0" fitWidth="819.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="381.0" fitWidth="790.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                   <Button layoutX="14.0" layoutY="459.0" mnemonicParsing="false" text="Next move" />
                </children></AnchorPane>
         </items>
