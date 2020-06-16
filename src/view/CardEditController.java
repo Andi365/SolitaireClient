@@ -2,6 +2,7 @@ package view;
 
 import dto.Card;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -40,6 +41,32 @@ public class CardEditController {
         suit.setText(card.getSuit().toString());
         color.setText(card.getColor().toString());
         cardValue.setText(""+card.getCardValue());
+    }
+
+    public boolean validinput() {
+        String message = null;
+
+        try{
+            Card.Suit.valueOf(suit.getText());
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            message = "Choose a valid Suit";
+        }
+
+        if(message == null) {
+            return true;
+        } else {
+            // Show the error message.
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(editStage);
+            alert.setTitle("Invalid Fields");
+            alert.setHeaderText("Please correct invalid fields");
+            alert.setContentText(message);
+
+            alert.showAndWait();
+
+            return false;
+        }
     }
 
     @FXML
