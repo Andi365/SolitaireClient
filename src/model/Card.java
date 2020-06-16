@@ -20,6 +20,7 @@ public class Card {
     private final ObjectProperty<Suit> suit;
     private final IntegerProperty cardValue;
     private boolean hidden = true;
+    private boolean isKnown = false;
 
     public Card(Suit suit, int cardValue) {
         this.suit = new SimpleObjectProperty<>(suit);
@@ -27,10 +28,6 @@ public class Card {
         if(suit == Suit.SPADES || suit == Suit.CLUBS){
             this.color = Color.BLACK;
         }else this.color = Color.RED;
-    }
-
-    public ObjectProperty<Suit> getSuit() {
-        return suit;
     }
 
     public void setSuit(Suit suit) {
@@ -43,32 +40,20 @@ public class Card {
     public IntegerProperty getCardValue() {
         return cardValue;
     }
-
     public void setCardValue(int cardValue) {
         this.cardValue.set(cardValue);
     }
 
-    @Override
-    public String toString() {
-        if (hidden)
-            return "Hidden";
-        return numberNames[cardValue.getValue()-1] + " of " + suit.toString();
+    public void setKnown(boolean known) {
+        isKnown = known;
     }
-
-    public boolean isHidden() {
-        return hidden;
-    }
-
-    public boolean isRed() {
-        if (hidden) return false;
-        return suit.getValue() == Suit.DIAMONDS || suit.getValue() == Suit.HEARTS;
-
+    public boolean isKnown() {
+        return isKnown;
     }
 
     public void setColor(Color color) {
         this.color = color;
     }
-
     public Color getColor(){
         return color;
     }
@@ -77,8 +62,26 @@ public class Card {
         if (hidden) return false;
         return suit.getValue() == Suit.CLUBS || suit.getValue() == Suit.SPADES;
     }
+    public boolean isRed() {
+        if (hidden) return false;
+        return suit.getValue() == Suit.DIAMONDS || suit.getValue() == Suit.HEARTS;
+    }
 
     public void setHidden(boolean hidden) {
         this.hidden = hidden;
+    }
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public ObjectProperty<Suit> getSuit() {
+        return suit;
+    }
+
+    @Override
+    public String toString() {
+        if (hidden)
+            return "Hidden";
+        return numberNames[cardValue.getValue()-1] + " of " + suit.getValue().toString();
     }
 }

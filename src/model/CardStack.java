@@ -1,9 +1,11 @@
 package model;
 
+import java.util.Collections;
 import java.util.Stack;
 
 public class CardStack {
-    Stack<Card> stack = new Stack<Card>();
+
+    Stack<Card> stack = new Stack<>();
 
     public void addCard(Card c) {
         stack.add(c);
@@ -27,29 +29,30 @@ public class CardStack {
     }
 
     Stack<Card> takeCards(int index){
-        Stack<Card> cards = new Stack<Card>();
+        Stack<Card> cards = new Stack<>();
 
-        int cardsRemoved = 0;
         for (int i = stack.size()-1; i >= index; i--) {
-            cards.add(stack.elementAt(i));
-            cardsRemoved++;
+            cards.add(stack.pop());
         }
-        for (int i = 0; i < cardsRemoved; i++) {
-            stack.pop();
-        }
+
         return cards;
     }
 
     void addCards(Stack<Card> cards){
-        for (int i = 0; i < cards.size(); i++) {
+        int cardSize = cards.size();
+        for (int i = 0; i < cardSize; i++) {
             stack.add(cards.pop());
         }
     }
 
     void addCardsReversed(Stack<Card> cards){
-        for (int i = cards.size()-1; i >= 0; i++) {
+        for (int i = cards.size()-1; i >= 0; i--) {
             stack.add(cards.elementAt(i));
         }
+    }
+
+    void shuffle(){
+        Collections.shuffle(stack);
     }
 
     @Override

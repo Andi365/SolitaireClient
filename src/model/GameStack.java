@@ -1,6 +1,6 @@
 package model;
 
-public class GameStack extends CardStack{
+public class GameStack extends CardStack {
     private int movable = 0;
 
     public void addCard(Card c) {
@@ -33,6 +33,5 @@ public class GameStack extends CardStack{
     public int getMovable() {
         return this.movable;
     }
-
 
 }
