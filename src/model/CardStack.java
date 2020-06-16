@@ -1,11 +1,9 @@
-package dto;
+package model;
 
-import java.util.Collections;
 import java.util.Stack;
 
 public class CardStack {
-
-    Stack<Card> stack = new Stack<>();
+    Stack<Card> stack = new Stack<Card>();
 
     public void addCard(Card c) {
         stack.add(c);
@@ -29,30 +27,29 @@ public class CardStack {
     }
 
     Stack<Card> takeCards(int index){
-        Stack<Card> cards = new Stack<>();
+        Stack<Card> cards = new Stack<Card>();
 
+        int cardsRemoved = 0;
         for (int i = stack.size()-1; i >= index; i--) {
-            cards.add(stack.pop());
+            cards.add(stack.elementAt(i));
+            cardsRemoved++;
         }
-
+        for (int i = 0; i < cardsRemoved; i++) {
+            stack.pop();
+        }
         return cards;
     }
 
     void addCards(Stack<Card> cards){
-        int cardSize = cards.size();
-        for (int i = 0; i < cardSize; i++) {
+        for (int i = 0; i < cards.size(); i++) {
             stack.add(cards.pop());
         }
     }
 
     void addCardsReversed(Stack<Card> cards){
-        for (int i = cards.size()-1; i >= 0; i--) {
+        for (int i = cards.size()-1; i >= 0; i++) {
             stack.add(cards.elementAt(i));
         }
-    }
-
-    void shuffle(){
-        Collections.shuffle(stack);
     }
 
     @Override
