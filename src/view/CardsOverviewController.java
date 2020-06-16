@@ -1,8 +1,8 @@
 package view;
 
+import dto.Card;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import model.Card;
 
 public class CardsOverviewController {
     @FXML

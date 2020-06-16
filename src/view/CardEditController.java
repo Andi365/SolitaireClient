@@ -1,9 +1,9 @@
 package view;
 
+import dto.Card;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Card;
 
 public class CardEditController {
     @FXML
@@ -29,7 +29,6 @@ public class CardEditController {
     private void handleOK() {
         card.setSuit(Card.Suit.valueOf(suit.getText()));
         card.setCardValue(Integer.parseInt(cardValue.getText()));
-        card.setColor(Card.Color.valueOf(color.getText()));
 
         editStage.close();
     }
@@ -38,9 +37,9 @@ public class CardEditController {
     public void setCard(Card card) {
         this.card = card;
 
-        suit.setText(card.getSuit().getValue().toString());
+        suit.setText(card.getSuit().toString());
         color.setText(card.getColor().toString());
-        cardValue.setText(card.getCardValue().getValue().toString());
+        cardValue.setText(""+card.getCardValue());
     }
 
     @FXML

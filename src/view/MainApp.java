@@ -1,5 +1,6 @@
 package view;
 
+import dto.*;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,7 +12,6 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import model.Card;
 
 public class MainApp extends Application {
     private Stage primaryStage;
