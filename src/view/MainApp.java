@@ -17,7 +17,6 @@ public class MainApp extends Application {
     private Stage primaryStage;
     private AnchorPane rootLayout;
 
-
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -25,8 +24,6 @@ public class MainApp extends Application {
 
         initRootLayout();
     }
-
-
 
     public ObservableList<Card> getCards() {
         ObservableList<Card> cards = FXCollections.observableArrayList();
