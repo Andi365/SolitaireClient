@@ -5,21 +5,13 @@ import java.util.Scanner;
 public class Controller {
 
     public static void main(String[] args){
-
         Controller controller = new Controller();
-        if(controller.setupGame()){
-            controller.runGame();
-
-        }
     }
-
-    LogicController logicController;
 
     public Controller(){
-        logicController = new LogicController();
     }
 
-    private void runGame(){
+    /*private void runGame(){
         boolean running = true;
         boolean moveSinceLastStockTurn = true;
         while(running){
@@ -48,7 +40,7 @@ public class Controller {
                 }
             }
         }
-    }
+    }*/
 
     private boolean setupGame(){
         return true;

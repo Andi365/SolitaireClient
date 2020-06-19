@@ -28,7 +28,7 @@ public class TestController {
 
 
     public TestController(){
-        logicController = new LogicController();
+        logicController = LogicController.getInstance();
     }
 
     public void runGame(){

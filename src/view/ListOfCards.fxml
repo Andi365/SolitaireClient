@@ -15,14 +15,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1320.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="model.Controller.CardsOverviewController">
+<AnchorPane prefHeight="800.0" prefWidth="1320.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="model.Controller.ViewController">
    <children>
       <Button layoutX="14.0" layoutY="759.0" mnemonicParsing="false" onAction="#editButton" text="Edit card">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </Button>
-      <Button layoutX="1230.0" layoutY="759.0" mnemonicParsing="false" text="Next move" />
+      <Button layoutX="1230.0" layoutY="759.0" mnemonicParsing="false" onAction="#nextMoveButton" text="Next move" />
       <TableView fx:id="finishStack4" editable="true" layoutX="1084.0" layoutY="23.0" prefHeight="253.0" prefWidth="180.0" styleClass="background" AnchorPane.bottomAnchor="524.0" AnchorPane.leftAnchor="1084.0" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="23.0">
         <columns>
           <TableColumn fx:id="finishStack4Suit" prefWidth="99.0" text="Suit" />
@@ -32,7 +32,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TextArea layoutX="82.0" layoutY="759.0" prefHeight="27.0" prefWidth="1136.0" styleClass="background" stylesheets="@Stylesheet.css" />
+      <TextArea fx:id="moveString" layoutX="82.0" layoutY="759.0" prefHeight="27.0" prefWidth="1136.0" styleClass="background" stylesheets="@Stylesheet.css" />
       <TableView fx:id="finishStack3" editable="true" layoutX="883.0" layoutY="23.0" prefHeight="253.0" prefWidth="180.0" styleClass="background">
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

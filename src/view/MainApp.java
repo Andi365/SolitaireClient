@@ -7,21 +7,20 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import model.Controller.CardEditController;
-import model.Controller.CardsOverviewController;
-import model.Controller.Controller;
-import model.Controller.TestController;
+import model.Controller.*;
 import model.dto.Card;
 
 public class MainApp extends Application {
     private Stage primaryStage;
     private AnchorPane rootLayout;
-    private TestController controller;
+    private LogicController logicController = LogicController.getInstance();
+    private ViewController viewController = new ViewController();
+    boolean isPushed = false;
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -56,15 +55,12 @@ public class MainApp extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
 
-            CardsOverviewController cardsOverviewController = loader.getController();
+            viewController = loader.getController();
 
-            controller = new TestController();
-            controller.setupGame();
-            cardsOverviewController.updateView(controller.getLogicController().getGameState());
-            controller.runGame();
-            //Controller controller = new Controller();
+            logicController.setupGame();
+            viewController.updateView(logicController.getGameState());
 
-            cardsOverviewController.setMainApp(this);
+            viewController.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -94,31 +90,14 @@ public class MainApp extends Application {
         }
     }
 
-    public void runGame(){
-        boolean running = true;
-        boolean moveSinceLastStockTurn = true;
-        while(running){
-            if(controller.getLogicController().gameWon()){
-                System.out.println("YOU WON!");
-                break;
-            }else {
-                String moveString = controller.getLogicController().makeMoveTest();
 
-                if (moveString == null) {
-                    running = false;
-                    System.out.println("GAME OVER!");
-                } else {
-                    if (moveString.equals("Turn the stock over, then turn new card from the stock") && !moveSinceLastStockTurn) {
-                        System.out.println("GAME OVER!");
-                        break;
-                    } else if (!moveString.equals("Turn the stock over, then turn new card from the stock") && !moveString.equals("Turn new card from the stock")) {
-                        moveSinceLastStockTurn = true;
-                    } else if (moveString.equals("Turn the stock over, then turn new card from the stock")) {
-                        moveSinceLastStockTurn = false;
-                    }
-                }
-            }
-        }
+
+    public boolean isPushed() {
+        return isPushed;
+    }
+
+    public void setPushed(boolean pushed) {
+        isPushed = pushed;
     }
 
     public static void main(String[] args) {

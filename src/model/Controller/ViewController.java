@@ -5,10 +5,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.dto.Card;
+import model.dto.CardStack;
 import model.dto.GameState;
 import view.MainApp;
 
-public class CardsOverviewController {
+public class ViewController {
     @FXML
     private TableView<Card> finishStack4;
     @FXML
@@ -82,18 +83,13 @@ public class CardsOverviewController {
     @FXML
     private TableColumn<Card, Integer> gameStack7Number;
     @FXML
-    private Button button;
-    @FXML
-    private Label suit;
-    @FXML
-    private Label color;
-    @FXML
-    private Label cardValue;
+    private TextArea moveString;
 
     private MainApp mainApp;
 
     @FXML
     private void initialize() {
+
         finishStack4Suit.setCellValueFactory(cellData -> cellData.getValue().getSuit());
         finishStack4Number.setCellValueFactory(cellData -> cellData.getValue().getCardValue().asObject());
 
@@ -129,6 +125,107 @@ public class CardsOverviewController {
 
         turnedStockSuit.setCellValueFactory(cellData -> cellData.getValue().getSuit());
         turnedStockNumber.setCellValueFactory(cellData -> cellData.getValue().getCardValue().asObject());
+
+        finishStack1.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                clearSelections(finishStack1);
+            }
+        });
+        finishStack2.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                clearSelections(finishStack2);
+            }
+        });
+        finishStack3.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                clearSelections(finishStack3);
+            }
+        });
+        finishStack4.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                clearSelections(finishStack4);
+            }
+        });
+        gameStack1.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                clearSelections(gameStack1);
+            }
+        });
+        gameStack2.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                clearSelections(gameStack2);
+            }
+        });
+        gameStack3.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                clearSelections(gameStack3);
+            }
+        });
+        gameStack4.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                clearSelections(gameStack4);
+            }
+        });
+        gameStack5.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                clearSelections(gameStack5);
+            }
+        });
+        gameStack6.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                clearSelections(gameStack6);
+            }
+        });
+        gameStack7.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                clearSelections(gameStack7);
+            }
+        });
+        turnedStock.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                clearSelections(turnedStock);
+            }
+        });
+
+    }
+
+    private void clearSelections(TableView<Card> tableView) {
+        if(tableView != finishStack1) {
+            finishStack1.getSelectionModel().clearSelection();
+        }
+        if(tableView != finishStack2) {
+            finishStack2.getSelectionModel().clearSelection();
+        }
+        if(tableView != finishStack3) {
+            finishStack3.getSelectionModel().clearSelection();
+        }
+        if(tableView != finishStack4) {
+            finishStack4.getSelectionModel().clearSelection();
+        }
+        if(tableView != gameStack1) {
+            gameStack1.getSelectionModel().clearSelection();
+        }
+        if(tableView != gameStack2) {
+            gameStack2.getSelectionModel().clearSelection();
+        }
+        if(tableView != gameStack3) {
+            gameStack3.getSelectionModel().clearSelection();
+        }
+        if(tableView != gameStack4) {
+            gameStack4.getSelectionModel().clearSelection();
+        }
+        if(tableView != gameStack5) {
+            gameStack5.getSelectionModel().clearSelection();
+        }
+        if(tableView != gameStack6) {
+            gameStack6.getSelectionModel().clearSelection();
+        }
+        if(tableView != gameStack7) {
+            gameStack7.getSelectionModel().clearSelection();
+        }
+        if(tableView != turnedStock) {
+            turnedStock.getSelectionModel().clearSelection();
+        }
     }
 
     public void setMainApp(MainApp mainApp) {
@@ -138,14 +235,57 @@ public class CardsOverviewController {
 
     @FXML
     private void editButton() {
-        Card specificCard = finishStack4.getSelectionModel().getSelectedItem();
+        Card specificCard = null;
+
+        specificCard = finishStack4.getSelectionModel().getSelectedItem();
+        if(specificCard == null) {
+            specificCard = finishStack3.getSelectionModel().getSelectedItem();
+        }
+        if(specificCard == null) {
+            specificCard = finishStack2.getSelectionModel().getSelectedItem();
+        }
+        if(specificCard == null) {
+            specificCard = finishStack1.getSelectionModel().getSelectedItem();
+        }
+        if(specificCard == null) {
+            specificCard = gameStack1.getSelectionModel().getSelectedItem();
+        }
+        if(specificCard == null) {
+            specificCard = gameStack2.getSelectionModel().getSelectedItem();
+        }
+        if(specificCard == null) {
+            specificCard = gameStack3.getSelectionModel().getSelectedItem();
+        }
+        if(specificCard == null) {
+            specificCard = gameStack4.getSelectionModel().getSelectedItem();
+        }
+        if(specificCard == null) {
+            specificCard = gameStack5.getSelectionModel().getSelectedItem();
+        }
+        if(specificCard == null) {
+            specificCard = gameStack6.getSelectionModel().getSelectedItem();
+        }
+        if(specificCard == null) {
+            specificCard = gameStack7.getSelectionModel().getSelectedItem();
+        }
+        if(specificCard == null) {
+            specificCard = turnedStock.getSelectionModel().getSelectedItem();
+        }
         mainApp.dialogBoxForEdit(specificCard);
     }
 
     @FXML
     private void nextMoveButton() {
-
+        LogicController logicController = LogicController.getInstance();
+        String move = logicController.makeMoveTest();
+        if(move != null) {
+            moveString.setText(move);
+        } else {
+            moveString.setText("You lost!");
+        }
+        updateView(logicController.getGameState());
     }
+
 
     public void updateView(GameState gameState) {
         ObservableList<Card> cards = FXCollections.observableArrayList();
