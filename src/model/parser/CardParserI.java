@@ -1,6 +1,6 @@
-package model;
+package model.parser;
 
-import model.Card;
+import model.dto.Card;
 
 public interface CardParserI {
     void reset();

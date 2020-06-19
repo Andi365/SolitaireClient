@@ -1,10 +1,10 @@
-package view;
+package model.Controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Card;
+import model.dto.Card;
 
 public class CardEditController {
     @FXML

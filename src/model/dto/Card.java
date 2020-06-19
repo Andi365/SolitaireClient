@@ -1,4 +1,4 @@
-package model;
+package model.dto;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -17,18 +17,21 @@ public class Card {
     }
 
     private Color color;
-    private final ObjectProperty<Suit> suit;
-    private final IntegerProperty cardValue;
+    private ObjectProperty<Suit> suit = null;
+    private IntegerProperty cardValue = null;
     private boolean hidden = true;
     private boolean isKnown = false;
 
     public Card(Suit suit, int cardValue) {
+        this.hidden = false;
         this.suit = new SimpleObjectProperty<>(suit);
         this.cardValue = new SimpleIntegerProperty(cardValue);
         if(suit == Suit.SPADES || suit == Suit.CLUBS){
             this.color = Color.BLACK;
         }else this.color = Color.RED;
     }
+
+    public Card() {}
 
     public void setSuit(Suit suit) {
         this.suit.setValue(suit);

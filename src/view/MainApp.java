@@ -7,15 +7,21 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import model.Card;
+import model.Controller.CardEditController;
+import model.Controller.CardsOverviewController;
+import model.Controller.Controller;
+import model.Controller.TestController;
+import model.dto.Card;
 
 public class MainApp extends Application {
     private Stage primaryStage;
     private AnchorPane rootLayout;
+    private TestController controller;
 
     @Override
     public void start(Stage primaryStage) {
@@ -50,8 +56,15 @@ public class MainApp extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
 
-            CardsOverviewController controller = loader.getController();
-            controller.setMainApp(this);
+            CardsOverviewController cardsOverviewController = loader.getController();
+
+            controller = new TestController();
+            controller.setupGame();
+            cardsOverviewController.updateView(controller.getLogicController().getGameState());
+            controller.runGame();
+            //Controller controller = new Controller();
+
+            cardsOverviewController.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -78,6 +91,33 @@ public class MainApp extends Application {
             dialogStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void runGame(){
+        boolean running = true;
+        boolean moveSinceLastStockTurn = true;
+        while(running){
+            if(controller.getLogicController().gameWon()){
+                System.out.println("YOU WON!");
+                break;
+            }else {
+                String moveString = controller.getLogicController().makeMoveTest();
+
+                if (moveString == null) {
+                    running = false;
+                    System.out.println("GAME OVER!");
+                } else {
+                    if (moveString.equals("Turn the stock over, then turn new card from the stock") && !moveSinceLastStockTurn) {
+                        System.out.println("GAME OVER!");
+                        break;
+                    } else if (!moveString.equals("Turn the stock over, then turn new card from the stock") && !moveString.equals("Turn new card from the stock")) {
+                        moveSinceLastStockTurn = true;
+                    } else if (moveString.equals("Turn the stock over, then turn new card from the stock")) {
+                        moveSinceLastStockTurn = false;
+                    }
+                }
+            }
         }
     }
 
